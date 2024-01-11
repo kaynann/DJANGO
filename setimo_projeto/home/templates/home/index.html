@@ -1,0 +1,100 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Lista de produtos</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      height: 100px;
+    }
+
+    header > nav {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+    }
+
+    header > nav > a {
+      font-size: 18px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .presentation {
+      background-color: #e7e7e7;
+      height: 415px;
+    }
+
+     .capa {
+      background: linear-gradient(rgba(0, 0, 0, .1 ), rgba(0, 0, 0, .7)), url("{% static 'images/capa.png' %}"),  center center / cover no-repeat;
+      margin: 0 auto;
+      width: 900px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+     }
+
+     .capa > h2 {
+      color: #fff;
+      align-self: center;
+      font-size: 30px;
+     }
+
+     .products{
+      margin: 0 auto;
+      padding-top: 2%;
+      padding-bottom: 2%;
+      border: 2px solid red;
+      width: 900px;
+     }
+
+     .products > div{
+      width: 250px; display: inline-block;
+      padding-left: 2%;
+     }
+  </style>
+</head>
+<body>
+  <header>
+    <img width="215px" src="{% static 'images/logo.png' %}">
+    <nav>
+      <a href="">Home</a>
+      <a href="">Quem somos</a>
+      <a href="">Contato</a>
+    </nav>
+  </header>
+
+  <section class="presentation">
+    <div class="capa">
+      <h2>Sua melhor opção de compra é aqui!</h2>
+    </div>
+  </section>
+  
+  <div class="products">
+    {% for produto in produtos %}
+    <div>
+      <h3>Nome: {{ produto.name_product  }}</h3>
+      <p>Descrição: {{produto.description }}</p>
+      <p>Categoria: {{produto.category}}</p>
+      <hr>
+      <span>Preço: R$ {{produto.price}}</span>
+      <a href="#">Saiba Mais</a>
+    </div>
+    {% endfor %}
+  </div>
+</body>
