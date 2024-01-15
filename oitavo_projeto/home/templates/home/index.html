@@ -1,0 +1,177 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StarBook</title>
+
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
+    }
+    header {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 100px;
+    }
+
+    header > nav {
+      width: 300px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    nav > a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #000;
+      font-weight: bold;
+    }
+
+    nav > a:hover{
+      color: blue;
+      transition: 0.3s;
+      text-decoration: underline;
+    }
+    .capa {
+      height: 500px;
+      background-color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .capa > .img-capa {
+      background: linear-gradient(rgba(0, 0, 0, .1 ), rgba(0, 0, 0, .7)), url("{% static 'images/capa.png' %}"),  center center / cover no-repeat;
+      height: 100%;
+      width: 900px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .img-capa > h3 {
+      align-self: center;
+      color: #FFF;
+    }
+
+    .books {
+      padding-top: 2%;
+      width: 900px; 
+      display: flex;
+      justify-content:center;
+      margin: 0 auto;
+      padding-bottom: 5%;
+    }
+
+    .books > div {
+      padding-left: 5%;
+    }
+
+    form {
+      border: 1px solid #000;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+      font-weight: bold;
+      margin: 0 auto;
+    }
+
+    form > ul{
+      list-style: none;
+    }
+    form > ul > li{
+      padding: 2%;
+    }
+
+    ul > li > input{
+      width: 100%;
+      height: 25px;
+    }
+
+    ul > #title {
+       background-color: #303030;
+       color: #FFF;
+       text-align: center;
+    }
+
+    .assunto {
+      display: flex;
+    }
+
+    .assunto > textarea{
+      width: 100%;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      height: 80px;
+      background-color: #303030;
+      margin-top: 2%;
+    }
+
+    footer > p{
+      align-self: center;
+      color: #FFF;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img style="width: 130px;" src="{% static 'images/logo.png' %}">
+    <nav>
+      <a href="#">Home</a> |
+      <a href="">Quem somos</a> |
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="capa">
+    <div class="img-capa">
+      <h3>Adquira já seu livro!</h3>
+    </div>
+  </section>
+
+  <div class="books">
+    {% for livro in livros %}
+    <div>
+      <h3>Nome: {{ livro.book_name  }}</h3>
+      <p>Ano de publicação: {{ livro.year_of_publication }}</p>
+      <p>Páginas: {{ livro.number_pages }}</p>
+      <p>Autor: {{ livro.author_name }}</p>
+      <p>Editora: {{ livro.publishing_company  }}</p>
+      <span>Preço: R$ {{livro.price}}</span>
+      <a href="#">Saiba Mais</a>
+    </div>
+    {% endfor %}
+  </div>
+
+  <form id="contato">
+    <ul>
+      <li id="title">Contato</li>
+      <li>
+        <label for="name">Nome:</label>
+        <input type="text" id="name" name="name">
+      </li>
+      <li>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+      </li>
+      <li class="assunto">
+        <label for="assunto">Assunto:</label>
+        <textarea name="assunto" id="assunto" cols="30" rows="10"></textarea>
+      </li>
+    </ul>
+  </form>
+
+  <footer>
+    <p>&copy; Todos os direitos reservados</p>
+  </footer>
+</body>
+</html>
