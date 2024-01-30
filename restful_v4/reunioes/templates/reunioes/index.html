@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reunião</title>
+</head>
+<body>
+  <a href="{% url 'register' %}">Cadastro</a>
+  <div style="width: 900px; margin: 20px auto;">
+    {% for meeting in meetings %}
+    <div>
+      <h3>Titulo: {{ meeting.title }}</h3>
+      <p>Descrição: {{ meeting.description }}</p>
+      <p>Local: {{ meeting.local }}</p>
+      <p>Nome do Participante: {{ meeting.participant_name }}</p>
+      <p>Data e Hora: {{ meeting.date_time }}</p>
+      <a class="btn btn-danger" href="{% url 'delete' meeting.id %}">Deletar</a>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
