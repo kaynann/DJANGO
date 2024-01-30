@@ -1,0 +1,31 @@
+{% load static %}
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de filmes</title>
+  {% bootstrap_css %}
+</head>
+<body>
+  <a href="{% url 'register' %}">Cadastrar filme</a>
+  <div class="container">
+    <div class="row">
+      {% for movie in movies %}
+      <div class="col"> 
+        <img src="media/{{ movie.photo }}" class="img-thumbnail" alt="Capa do filme" style="width: 300px; height: 300px;">
+        <h2>Nome: {{ movie.name }}</h2>
+        <h3>Diretor: {{ movie.director }}</h3>
+        <p>Sinopse: {{ movie.synopsis }}</p>
+        <span>Ano de lançamento: {{ movie.release_year }}</span><br>
+        <span>Duração: {{ movie.duration }} minutos</span><br>
+        <span>Gênero: {{ movie.get_gender_display }} </span><br>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% bootstrap_javascript %}
+</body>
+</html>
